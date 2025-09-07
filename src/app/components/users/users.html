@@ -1,0 +1,57 @@
+<div>
+    <h1 class="text-center">Users</h1>
+    </div>
+    <br>
+    <div class="search-bar" style="text-align: center; margin-top: 20px;">
+      <input
+        type="text"
+        placeholder="Search by username"
+        style="padding: 10px; width: 300px; border-radius: 5px; border: 1px solid #ccc;"
+      />
+      <button
+        style="padding: 10px 20px; margin-left: 10px; border-radius: 5px; border: none; background-color: #007bff; color: white; cursor: pointer;"
+      >
+        Search
+      </button>
+    </div>
+<div style="max-width: 850px; max-height: 450px; margin: auto; " class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+  @for (user of UserList; track $index) {
+  <div class="col">
+    <div class="card h-100 position-relative" style="text-align: center; padding: 10px; align-items: center; border-radius: 10%; font-family: Arial, sans-serif;">
+      <img
+        [src]="user.image"
+        class="card-img-top" style="border-radius: 50%; border: 1px solid #ccc; width: 170px;"
+        alt="{{ user.firstName }} {{ user.lastName }}"
+      />
+      <div class="card-body">
+        <p 
+        class="card-text"
+          [ngStyle]="
+            user.role === 'admin'
+              ? { 'background-color': 'red', color: 'white', width: '120px', margin: 'auto' }
+              : user.role === 'user'
+                ? { 'background-color': 'green', color: 'white', width: '120px', margin: 'auto' }
+              : { 'background-color': 'yellow', color: 'black', width: '120px', margin: 'auto' }
+          "
+        >
+          {{user.role}}
+        </p>
+        <p>
+          {{ user.username }}
+        </p>
+        <p>
+          {{ user.email }}
+        </p>
+        <p>
+          {{ user.phone }}
+        </p>
+        <p>
+          {{ user.birthDate }}
+        </p>
+      </div>
+    </div>
+  </div>
+  }@empty {
+  <h1>No Movies Founded!</h1>
+  }
+</div>
